@@ -5,7 +5,7 @@ contract TRC20 {
   string public name;
   string public symbol;
   uint8 public decimals = 6;
-  uint256 public totalSupply = 1000000000;
+  uint256 public totalSupply;
   mapping (address => uint256) public balanceOf;
   mapping(address => mapping(address => uint256)) public allowance;
   
@@ -13,11 +13,13 @@ contract TRC20 {
   event Approval(address indexed _owner,address indexed _spender,uint256 value);
   event Burn(address indexed from,uint256 value);
   
+  uint256 initialSupply = 1000000000;
   string tokenName = "LIME";
   string tokenSymbol = "LIME"; 
  
 
   constructor() public {
+    totalSupply = initialSupply*10**uint256(decimals);
     balanceOf[msg.sender] = totalSupply;
     name = tokenName;
     symbol = tokenSymbol;
